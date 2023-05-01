@@ -1,0 +1,6 @@
+[tool.djlint]
+format_css=true
+format_js=true
+ignore="H030,H031"
+
+

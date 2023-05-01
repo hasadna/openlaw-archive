@@ -37,4 +37,3 @@ class CompareForm(forms.Form):
         self.law = law
         self.fields["version_a"].set_law(law)
         self.fields["version_b"].set_law(law)
-

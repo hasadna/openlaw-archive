@@ -15,6 +15,8 @@ serve:
 
 lint:
 	black .
+	find djang -type f -path '*/templates/*' | xargs venv/bin/djlint --reformat --warn
+	find djang -type f -path '*/templates/*' | xargs venv/bin/djlint --lint
 
 translate:
 	cd djang/parsing && ../../venv/bin/python ../manage.py makemessages -l he

@@ -50,4 +50,3 @@ class VersionCompareView(FormView):
         ret["law"] = law
 
         return ret
-

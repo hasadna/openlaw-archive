@@ -59,7 +59,7 @@ def ugly_diff_match_html(content_a: str, content_b: str) -> str:
     dmp = dmp_module.diff_match_patch()
     diffs = dmp.diff_main(content_a, content_b)
     html = []
-    for (op, data) in diffs:
+    for op, data in diffs:
         text = data
         if op == dmp.DIFF_INSERT:
             html.append(ugly_tag("ins", text))
@@ -82,4 +82,3 @@ def diff(revision_a: Revision, revision_b: Revision, style: str) -> str:
     processed = post_processing(ugly_html, style)
 
     return processed
-

@@ -21,4 +21,3 @@ class Revision(models.Model):
     effective_date_start = models.DateField(null=True)
     effective_date_end = models.DateField(null=True)
     # source_text - will do later
-
