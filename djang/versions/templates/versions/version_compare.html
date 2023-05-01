@@ -1,0 +1,26 @@
+{% extends 'versions/base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h1> Law comparison</h1>
+  <h4>{{law.name}}</h4>
+
+<div class="card mb-4 rounded-3 shadow-sm">
+  <div class="card-header py-3">
+                  <form method="GET">
+                  {{form.as_p}}
+                      <input type="submit" value="compare" />
+                  </form>
+          </div>
+          <div class="card-body">
+                <div class="row" dir="rtl">
+                  {{output | safe | linebreaks}}
+                </div>
+
+          </div>
+</div>
+</div>
+
+{% endblock content %}
+

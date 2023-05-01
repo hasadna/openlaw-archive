@@ -1,0 +1,20 @@
+{% extends 'versions/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Law list</h1>
+
+    <ul class="list-group">
+      {% for law in laws %}
+      <li class="list-group-item">
+                      <a href="{% url 'versions:compare' pk=law.pk %}">
+                        {{ law.name }}
+        </a>
+      </li>
+      {% endfor %}
+</ul>
+
+
+</div>
+
+{% endblock content %}

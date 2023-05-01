@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from django.views.generic.base import RedirectView
+from . import views
+
+app_name = "versions"
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("versions/", include("versions.urls")),
-    # In lieu of homepage
-    path("", RedirectView.as_view(url="/versions/")),
+        path("", views.LawChooseView.as_view(), name="home"),
+        path("compare/<pk>", views.VersionCompareView.as_view(), name="compare"),
 ]
