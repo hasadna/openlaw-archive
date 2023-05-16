@@ -5,8 +5,22 @@ bot_dir = settings.OPENLAW_BOT_DIR
 
 
 def exec(filename, inp):
-    out = subprocess.check_output(f"{bot_dir}/{filename}", input=inp.encode())
-    return out.decode()
+    path = f"{bot_dir}/{filename}"
+    sub = subprocess.Popen(
+        path,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    out, err = sub.communicate(input=inp)
+    exit_code = sub.wait()
+
+    if exit_code:
+        raise Exception(f"process {filename} exited with {exit_code}. stderr: {err}")
+
+    return out
 
 
 def syntax_law(data):
