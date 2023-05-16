@@ -74,7 +74,8 @@ def ugly_diff_match_html(content_a: str, content_b: str) -> str:
 
 def post_processing(ugly_html, formatting_style) -> str:
     # TODO move here?
-    return bot.post_processing(ugly_html, formatting_style)
+    ret = bot.post_processing(ugly_html, formatting_style)
+    return ret.replace("\n", "<br />\n")
 
 
 def diff(revision_a: Revision, revision_b: Revision, style: str) -> str:
