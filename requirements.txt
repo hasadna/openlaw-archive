@@ -7,3 +7,6 @@ idna==3.4
 requests==2.29.0
 sqlparse==0.4.4
 urllib3==1.26.15
+gunicorn==20.1.0
+uvicorn==0.20.0
+psycopg2-binary==2.9.5
