@@ -5,6 +5,8 @@ import diff_match_patch as dmp_module
 from html import escape as html_escape
 from django.utils.html import format_html
 
+from . import bot
+
 
 def get_content(revision: Revision) -> str:
     revision_id = revision.wiki_rev_id
@@ -71,8 +73,8 @@ def ugly_diff_match_html(content_a: str, content_b: str) -> str:
 
 
 def post_processing(ugly_html, formatting_style) -> str:
-    # TODO complete
-    return ugly_html
+    # TODO move here?
+    return bot.post_processing(ugly_html, formatting_style)
 
 
 def diff(revision_a: Revision, revision_b: Revision, style: str) -> str:
