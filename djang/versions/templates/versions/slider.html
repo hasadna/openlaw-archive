@@ -1,0 +1,9 @@
+{% if not widget.disabled %}
+<br> {# to match the slider and the datalist #}
+<input name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %} type="range" min="{{widget.min}}" max="{{widget.max}}" {% if widget.value %} value="{{widget.value}}" {%endif%} class="slider" list="{{widget.name}}_steplist">
+<datalist id="{{widget.name}}_steplist">
+  {% for step in widget.steps %}
+  <option value="{{ step.value }}" label="{{step.label}}"></option>
+  {% endfor %}
+</datalist>
+{% endif %}

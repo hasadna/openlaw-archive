@@ -1,8 +1,18 @@
 {% extends 'versions/base.html' %}
 {% block content %}
+<style>
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;
+}
+</style>
+
     <div class="container">
         <h1>Law comparison</h1>
-        <h4>{{ law.name }} (<a href="{% url 'versions:timeline' pk=law.pk%}">timeline</a>)</h4>
+        <h4>{{ law.name }}</h4>
         <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
                 <form method="get">
@@ -16,3 +26,4 @@
         </div>
     </div>
 {% endblock content %}
+

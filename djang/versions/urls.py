@@ -24,4 +24,5 @@ app_name = "versions"
 urlpatterns = [
     path("", views.LawChooseView.as_view(), name="home"),
     path("compare/<pk>", views.VersionCompareView.as_view(), name="compare"),
+    path("timeline/<pk>", views.VersionTimelineView.as_view(), name="timeline"),
 ]
