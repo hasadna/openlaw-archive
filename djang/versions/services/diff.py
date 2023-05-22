@@ -9,6 +9,8 @@ from . import bot
 
 
 def get_content(revision: Revision) -> str:
+    if revision.source_text:
+        return revision.source_text
     revision_id = revision.wiki_rev_id
     # 'https://he.wikisource.org/w/api.php?action=query&prop=revisions&revids=1416783&rvprop=ids|content&format=json'
     response = requests.get(
