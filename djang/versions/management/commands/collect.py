@@ -8,22 +8,22 @@ def process_law(law_in: wiki.PageResult, force: bool):
     if not force and models.Law.objects.filter(wiki_page_id=law_in.page_id).exists():
         return
     law, law_created = models.Law.objects.get_or_create(
-        wiki_page_id=law_in.page_id, defaults={"title": law_in.title}
+        wiki_page_id=law_in.page_id, defaults={"name": law_in.title}
     )
     law.save()
-    if not law_created:
-        models.Revision.objects.filter(law=law).delete()
     # Revisions
     revisions_in = wiki.get_revisions_for_page(page_title=law_in.title)
     # TODO do the splits!
     for revision_in in revisions_in:
-        models.Revision(
+        models.Revision.objects.get_or_create(
             law=law,
             wiki_rev_id=revision_in.id,
-            name=revision_in.comment,
-            effective_date_start=revision_in.timestamp,
-            source_text=revision_in.content,
-        ).save()
+            defaults={
+                "name": revision_in.comment,
+                "effective_date_start": revision_in.timestamp,
+                "source_text": revision_in.content,
+            },
+        )
 
     # Get all revisions for said law
     # group by major revisions
