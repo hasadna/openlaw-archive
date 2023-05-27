@@ -79,7 +79,8 @@ def get_revisions_for_page(page_title: str, cont_dict=None) -> Iterator[Revision
     yield from (
         RevisionResult(
             id=int(r["revid"]),
-            timestamp=datetime.fromisoformat(r["timestamp"]),
+            # supporting Z is only in Python 3.11+
+            timestamp=datetime.fromisoformat(r["timestamp"].replace('Z', '+00:00')),
             comment=r["comment"],
             content=r["slots"]["main"]["content"],
         )
